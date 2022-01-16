@@ -1,6 +1,7 @@
 name: CD Pipeline
 
 permissions:
+  contents: read
   packages: write
 
 on:
