@@ -40,8 +40,8 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew bootBuildImage \
-            --imageName docker.io/polarbookshop/catalog-service:${{ env.APP_VERSION }} \
+            --imageName ghcr.io/npalm/catalog-service:${{ env.APP_VERSION }} \
             --publishImage \
-            -PregistryUrl=docker.io \
-            -PregistryUsername=polarbookshop \
+            -PregistryUrl=ghcr.io \
+            -PregistryUsername=npalm \
             -PregistryToken=${{ secrets.REGISTRY_TOKEN }}
