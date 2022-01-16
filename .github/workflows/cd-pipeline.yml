@@ -44,4 +44,4 @@ jobs:
             --publishImage \
             -PregistryUrl=ghcr.io \
             -PregistryUsername=npalm \
-            -PregistryToken=${{ secrets.REGISTRY_TOKEN }}
+            -PregistryToken=${{ secrets.GITHUB_TOKEN }}
