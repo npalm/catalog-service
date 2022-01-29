@@ -9,7 +9,6 @@ on:
     tags:
       - 'v*'
 
-
 jobs:
   build:
     name: Build
@@ -51,3 +50,16 @@ jobs:
             -PregistryUrl=ghcr.io \
             -PregistryUsername=npalm \
             -PregistryToken=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger application release in the deployment repository
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.ACCESS_TOKEN_REPO }}
+          repository: ${{ github.event.repository.owner.name }}/polar-deployment
+          event-type: release_app_event
+          client-payload: '{
+                "app_image": "ghcr.io/polarbookshop/catalog-service",
+                "app_name": "catalog-service",
+                "app_tag": "${{ github.ref_name }}",
+                "app_version": "${{ env.APP_VERSION }}"
+              }'
